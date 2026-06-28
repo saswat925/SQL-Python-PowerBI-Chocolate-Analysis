@@ -1,39 +1,14 @@
 # 🍫 End-to-End Chocolate Sales Analysis | SQL • Python • Power BI
 
-![SQL](https://img.shields.io/badge/SQL_Server-CC2927?style=for-the-badge\&logo=microsoftsqlserver\&logoColor=white)
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge\&logo=python\&logoColor=white)
-![Power BI](https://img.shields.io/badge/Power_BI-F2C811?style=for-the-badge\&logo=powerbi\&logoColor=black)
-![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge\&logo=github)
+## 📌 Project Overview
 
----
-
-# 📌 Project Overview
-
-This project demonstrates a complete **End-to-End Data Analytics Workflow** using SQL Server, Python, and Power BI.
-
-Starting from raw CSV files, the project covers data loading, cleaning, validation, transformation, exploratory data analysis (EDA), business insights, and interactive dashboard creation.
-
-The goal is to analyze chocolate sales performance and generate actionable business insights.
-
----
-
-# 🎯 Objectives
-
-* Build an SQL database from scratch
-* Import raw CSV files
-* Clean and validate data
-* Create a relational database model
-* Perform SQL Exploratory Data Analysis (EDA)
-* Analyze data using Python
-* Build an interactive Power BI dashboard
-* Generate business recommendations
+This project demonstrates a complete **End-to-End Data Analytics workflow** using **SQL Server, Python, and Power BI**. Starting with raw CSV files, the project covers database creation, data loading, data cleaning, validation, SQL analysis, Python exploratory data analysis (EDA), and an interactive Power BI dashboard to generate meaningful business insights for a chocolate retail business.
 
 ---
 
 # 🛠 Tech Stack
 
-* Microsoft SQL Server
-* SQL Server Management Studio (SSMS)
+* SQL Server (SSMS)
 * Python
 * Jupyter Notebook
 * Pandas
@@ -41,258 +16,212 @@ The goal is to analyze chocolate sales performance and generate actionable busin
 * Matplotlib
 * Seaborn
 * Power BI
-* Git
-* GitHub
+* Git & GitHub
 
 ---
 
 # 📂 Dataset
 
-The project contains four datasets.
-
-| Dataset   | Records |
-| --------- | ------- |
-| Customers | 50,000  |
-| Products  | 200     |
-| Stores    | 100     |
-| Sales     | 990,236 |
-
----
-
-# 📁 Project Structure
-
-```
-Chocolate-Sales-Analysis/
-
-│
-├── Dataset/
-│      customers.csv
-│      products.csv
-│      stores.csv
-│      sales.csv
-│
-├── SQL/
-│      01_Create_Database.sql
-│      02_Create_Staging_Tables.sql
-│      03_Bulk_Insert.sql
-│      04_Data_Cleaning.sql
-│      05_Create_Final_Tables.sql
-│      06_Load_Data.sql
-│      07_EDA.sql
-│      08_Business_Insights.sql
-│
-├── Python/
-│      Chocolate_Analysis.ipynb
-│      requirements.txt
-│
-├── PowerBI/
-│      Chocolate Dashboard.pbix
-│
-├── Images/
-│      Dashboard.png
-│      Data_Model.png
-│
-└── README.md
-```
+| Table         |   Records |
+| ------------- | --------: |
+| Customers     |    50,000 |
+| Products      |       200 |
+| Stores        |       100 |
+| Sales (Raw)   | 1,000,000 |
+| Sales (Final) |   990,236 |
 
 ---
 
-# ⚙️ SQL Workflow
+# 🏗️ Project Workflow
 
-## Step 1
-
-Create Database
-
-```
-CREATE DATABASE CHOCOLATE_DB;
-```
-
----
-
-## Step 2
-
+```text
+Raw CSV Files
+      │
+      ▼
+Create SQL Database
+      │
+      ▼
 Create Staging Tables
-
-* STG_CUSTOMERS
-* STG_PRODUCTS
-* STG_STORES
-* STG_SALES
-
----
-
-## Step 3
-
+      │
+      ▼
 Bulk Insert CSV Files
-
-* customers.csv
-* products.csv
-* stores.csv
-* sales.csv
-
----
-
-## Step 4
-
-Data Cleaning
-
-Performed validation for
-
-✔ NULL values
-
-✔ Duplicate records
-
-✔ Invalid dates
-
-✔ Invalid ages
-
-✔ Negative values
-
-✔ Profit validation
-
-✔ Extra spaces
-
-✔ Foreign key validation
-
----
-
-## Step 5
-
+      │
+      ▼
+Data Cleaning & Validation
+      │
+      ▼
 Create Final Tables
-
-* Customers
-* Products
-* Stores
-* Sales
-
-Primary Keys
-
-Foreign Keys
-
-Star Schema
+      │
+      ▼
+SQL Exploratory Data Analysis
+      │
+      ▼
+Python Data Analysis
+      │
+      ▼
+Power BI Dashboard
+      │
+      ▼
+Business Insights & Recommendations
+```
 
 ---
 
-# 🧹 Data Cleaning Summary
+# 🧹 Data Cleaning & Validation
 
-### Customers
+## Customers (50,000 Records)
 
-* Checked NULL values
+* Checked total row count
+* Validated NULL values
 * Checked duplicate Customer IDs
-* Validated Age
-* Validated Gender
-* Validated Loyalty Member
+* Validated Age (0–100)
+* Validated Gender values
+* Validated Loyalty Member (0/1)
 * Converted Join Date to DATE datatype
+* Verified data types using `sp_help`
+
+**Result:** No NULLs, duplicates, or invalid records found.
 
 ---
 
-### Products
+## Products (200 Records)
 
 * Checked NULL values
-* Removed duplicate Product IDs
-* Validated Cocoa Percentage
+* Checked duplicate Product IDs
+* Validated Cocoa Percentage (0–100)
 * Validated Product Weight
-* Verified Product Categories
+* Validated Categories
+* Verified Product Names
+
+**Result:** All product records passed validation.
 
 ---
 
-### Stores
+## Stores (100 Records)
 
 * Checked NULL values
-* Removed duplicates
+* Checked duplicate Store IDs
+* Removed extra spaces using `TRIM()`
+* Validated Store Types
+* Verified Store Names
+
+**Result:** All store records were clean and valid.
+
+---
+
+## Sales (1,000,000 Records)
+
+Performed extensive validation:
+
+* Checked NULL values
+* Checked duplicate transactions
 * Removed extra spaces
-* Validated Store Type
+* Validated Order Dates
+* Validated Quantity
+* Validated Revenue
+* Validated Cost
+* Validated Profit
+* Verified Profit Formula
+
+```sql
+Profit = Revenue - Cost
+```
+
+* Validated Customer Foreign Keys
+* Validated Product Foreign Keys
+* Validated Store Foreign Keys
 
 ---
 
-### Sales
+# 🚨 Data Quality Issue Resolved
 
-* Checked NULL values
-* Checked duplicate Orders
-* Removed invalid Product IDs
-* Validated Dates
-* Validated Revenue
-* Validated Profit
-* Validated Cost
-* Validated Foreign Keys
+During Product Foreign Key validation:
 
-Result:
+* **STG_PRODUCTS contained 200 Product IDs**
+* **STG_SALES contained 202 Product IDs**
 
-Initial Sales Records : 1,000,000
+Two Product IDs were missing from the Product Master table, creating **9,764 unmatched sales records**.
 
-Final Sales Records : **990,236**
+These invalid records were identified using a `LEFT JOIN` and removed before loading the final Sales table.
 
-9,764 invalid sales records were removed due to missing Product IDs.
+```sql
+DELETE s
+FROM STG_SALES s
+LEFT JOIN STG_PRODUCTS p
+ON s.product_id = p.product_id
+WHERE p.product_id IS NULL;
+```
+
+### Final Validation
+
+| Table     |   Initial |       Final |
+| --------- | --------: | ----------: |
+| Customers |    50,000 |      50,000 |
+| Products  |       200 |         200 |
+| Stores    |       100 |         100 |
+| Sales     | 1,000,000 | **990,236** |
+
+This ensured referential integrity and a production-ready database.
 
 ---
 
 # 📊 SQL Analysis
 
-The following analyses were performed.
+The following business analyses were performed:
 
 * Total Revenue
 * Total Profit
 * Total Orders
 * Total Quantity Sold
-* Top Products
-* Top Categories
+* Top 10 Products by Revenue
+* Top 10 Products by Profit
+* Revenue by Category
+* Profit by Category
 * Revenue by Country
 * Revenue by City
+* Top Stores
 * Top Customers
-* Loyalty Analysis
-* Gender Analysis
+* Loyalty Member Analysis
+* Gender-wise Revenue
 * Age Group Analysis
 * Monthly Revenue Trend
 * Monthly Profit Trend
+* Average Order Value
 * Best Selling Products
-* Revenue Contribution
+* Highest Discount Products
+* Revenue Contribution %
 * Running Revenue
-* Ranking using Window Functions
-* LAG Analysis
-* ROW_NUMBER Analysis
+* RANK()
+* ROW_NUMBER()
+* LAG()
 
 ---
 
 # 🐍 Python Analysis
 
-Python was used for
+Performed using Pandas, NumPy, Matplotlib, and Seaborn.
 
-* Data Import
+* Data Loading
 * Data Cleaning
-* Data Validation
 * Exploratory Data Analysis
 * Revenue Analysis
 * Profit Analysis
-* Product Analysis
+* Product Performance
 * Customer Analysis
-* Monthly Trend Analysis
-* Data Visualization
-
-Libraries Used
-
-```
-pandas
-numpy
-matplotlib
-seaborn
-```
+* Monthly Sales Trend
+* Visualizations
 
 ---
 
 # 📈 Power BI Dashboard
 
-Dashboard includes
+Dashboard includes:
 
-✅ KPI Cards
-
+* KPI Cards
 * Total Revenue
 * Total Profit
 * Total Orders
 * Quantity Sold
-
----
-
-Visualizations
-
 * Revenue by Category
 * Revenue by Country
 * Revenue by City
@@ -307,158 +236,63 @@ Visualizations
 
 ---
 
-# 📊 Project KPIs
+# 📌 Project KPIs
 
-| KPI                 | Value         |
-| ------------------- | ------------- |
-| Total Revenue       | 25.24 Million |
-| Total Profit        | 10.10 Million |
-| Total Orders        | 990,236       |
-| Quantity Sold       | 2,970,470     |
-| Average Order Value | 25.49         |
-
----
-
-# 🏆 Key Insights
-
-## Revenue
-
-Total Revenue
-
-**25.24 Million**
-
-Total Profit
-
-**10.10 Million**
-
-Total Orders
-
-**990,236**
-
-Average Order Value
-
-**25.49**
+| KPI                 |             Value |
+| ------------------- | ----------------: |
+| Total Revenue       | **25.24 Million** |
+| Total Profit        | **10.10 Million** |
+| Total Orders        |       **990,236** |
+| Quantity Sold       |     **2,970,470** |
+| Average Order Value |         **25.49** |
 
 ---
 
-## Best Selling Product
+# 💡 Key Business Insights
 
-Dark Chocolate 50%
-
-Revenue
-
-1.77 Million
-
-Quantity Sold
-
-208,996
-
----
-
-## Highest Revenue Category
-
-Praline
-
-Revenue
-
-6.66 Million
+* Dark Chocolate 50% generated the highest revenue (**1.77 Million**).
+* Praline was the highest revenue category (**6.66 Million**).
+* Canada generated the highest country-wise revenue (**5.03 Million**).
+* Toronto was the top-performing city (**4.55 Million**).
+* Loyalty members generated slightly higher revenue than non-members.
+* Customers above 50 years contributed the highest revenue.
+* February consistently recorded the lowest monthly profit.
+* Revenue remained stable across both years, indicating consistent business performance.
 
 ---
 
-## Top Country
+# 🚀 Business Recommendations
 
-Canada
-
-Revenue
-
-5.03 Million
-
----
-
-## Top City
-
-Toronto
-
-Revenue
-
-4.55 Million
-
----
-
-## Customer Insights
-
-* Loyalty members generated slightly more revenue than non-members.
-* Male customers generated slightly higher revenue than female customers.
-* Customers aged above 50 generated the highest revenue.
-
----
-
-## Monthly Trend
-
-* February recorded the lowest profit.
-* January, March, July and August recorded the highest profit.
-* Revenue remained consistent across both years.
-
----
-
-## Discount Analysis
-
-Average discounts ranged between
-
-5.64% - 5.68%
-
-showing a consistent pricing strategy.
-
----
-
-# 💡 Business Recommendations
-
-* Increase inventory of Dark Chocolate products.
-* Expand operations in Canada and Toronto.
+* Increase inventory for top-selling chocolate products.
+* Expand successful product lines in Canada and Toronto.
 * Improve promotional campaigns during February.
-* Reward loyal customers through exclusive offers.
+* Reward loyal customers with exclusive offers.
 * Introduce premium chocolate bundles.
 * Focus marketing on high-performing products.
-* Optimize underperforming products through targeted promotions.
-
----
-
-# 📷 Dashboard Preview
-
-Add your Power BI Dashboard screenshot here.
-
-```
-Images/Dashboard.png
-```
-
----
-
-# 🚀 Future Improvements
-
-* Build a sales forecasting model
-* Customer segmentation using Machine Learning
-* Customer Lifetime Value Analysis
-* RFM Analysis
-* Predictive Analytics
-* Automated ETL Pipeline
-* Azure SQL Integration
+* Monitor product master data to prevent invalid Product IDs in future ETL processes.
 
 ---
 
 # 📚 Skills Demonstrated
 
-* SQL
+* SQL Server
+* Database Design
+* ETL Process
 * Data Cleaning
 * Data Validation
+* Foreign Key Validation
 * Data Modeling
 * Window Functions
-* Common Table Expressions
-* Exploratory Data Analysis
+* Common Table Expressions (CTEs)
+* Exploratory Data Analysis (EDA)
 * Python
-* Data Visualization
+* Pandas
+* NumPy
+* Matplotlib
+* Seaborn
 * Power BI
-* Dashboard Design
 * Business Intelligence
+* Dashboard Design
 * Git
 * GitHub
 
@@ -468,15 +302,8 @@ Images/Dashboard.png
 
 **Saswat**
 
-Aspiring Data Analyst
+**Aspiring Data Analyst**
 
-**Skills**
+**Skills:** SQL • Python • Power BI • Excel • Data Cleaning • Data Visualization • Business Analytics
 
-* SQL
-* Python
-* Power BI
-* Excel
-* Data Cleaning
-* Data Visualization
-* Business Analytics
-
+⭐ **If you found this project useful, don't forget to star the repository!**
